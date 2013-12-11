@@ -7,7 +7,7 @@ app.get('/', function(req, res){
 });
 
 app.listen(3001);
-console.log('Listening on port 3000');
+console.log('Listening on port 3001');
 }else{
 	console.log("I'm not falling for you, test");
 }
