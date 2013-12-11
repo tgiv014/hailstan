@@ -3,7 +3,7 @@ var app = express();
 
 if(process.argv[2]!="test"){
 app.get('/', function(req, res){
-  res.send('Hello World');
+  res.send('All hail Stan!');
 });
 
 app.listen(3001);
