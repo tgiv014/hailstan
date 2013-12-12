@@ -37,7 +37,7 @@ if(process.argv[2]!="test"){
 				console.log('Legit click from '+address);
 				setTimeout(function(){
 					users.splice(users.indexOf(address),1);
-					console.log('Removed '+address+'from queue');
+					console.log('Removed '+address+' from queue');
 				},900);
 			}
 		});
