@@ -20,11 +20,11 @@ if(process.argv[2]!="test"){
 	});
 
 	io.sockets.on('connection', function (socket) {
-		time=0;
+		var time=0;
 		socket.emit('news23', { num: count , next: time});
 		socket.on('clicked3', function (data) {
 			count++;
-			time=data.t;
+			var time=data.t;
 			time+=1000;
 			socket.emit('news23', { num: count , next: time});
 			socket.broadcast.emit('news3', { num: count });
