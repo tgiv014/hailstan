@@ -9,7 +9,12 @@ if(process.argv[2]!="test"){
 	server.listen(3001);
 
 	app.get('/', function (req, res) {
-		res.sendfile(__dirname + '/index.html');
+		var address = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
+		if(address=="192.168.1.125"){
+			res.sendfile(__dirname + '/index2.html');
+		}else{
+			res.sendfile(__dirname + '/index.html');
+		}
 	});
 	app.get('/styles.css', function (req, res) {
 		res.sendfile(__dirname + '/styles.css');
