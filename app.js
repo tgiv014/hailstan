@@ -15,6 +15,9 @@ if(process.argv[2]!="test"){
 	app.get('/stan.jpg', function (req, res) {
 		res.sendfile(__dirname + '/stan.jpg');
 	});
+	app.get('/load.gif', function (req, res) {
+		res.sendfile(__dirname + '/ajax-loader.gif');
+	});
 
 	io.sockets.on('connection', function (socket) {
 		time=0;
