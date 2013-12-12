@@ -35,7 +35,7 @@ if(process.argv[2]!="test"){
 			}else{
 				count++;
 				time=data.t;
-				time+=1000;
+				time+=500;
 				socket.emit('news2', { num: count , next: time});
 				socket.broadcast.emit('news', { num: count });
 				users.push(address);
@@ -43,7 +43,7 @@ if(process.argv[2]!="test"){
 				setTimeout(function(){
 					users.splice(users.indexOf(address),1);
 					console.log('Removed '+address+' from queue');
-				},900);
+				},400);
 			}
 		});
 	});
