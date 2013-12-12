@@ -1,6 +1,6 @@
 var app = require('express')()
 , server = require('http').createServer(app)
-, io = require('socket.io').listen(server);
+, io = require('socket.io').listen(server, { log: false });
 
 var count = 0;
 var users = [];
@@ -34,9 +34,10 @@ if(process.argv[2]!="test"){
 				socket.emit('news2', { num: count , next: time});
 				socket.broadcast.emit('news', { num: count });
 				users.push(address);
-				console.log(address);
+				console.log('Legit click from '+address);
 				setTimeout(function(){
 					users.splice(users.indexOf(address),1);
+					console.log('Removed '+address+'from queue');
 				},900);
 			}
 		});
