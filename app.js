@@ -16,7 +16,7 @@ if(process.argv[2]!="test"){
 			console.log(data);
 			console.log(data.my);
 			count++;
-			socket.emit('news', { num: count });
+			io.sockets.emit('news', { num: count });
 		});
 	});
 }else{
