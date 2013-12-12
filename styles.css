@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+  padding: 0;
+}
 button {
   position: relative;
   outline: none;
@@ -38,6 +42,7 @@ p {
 #footer{
   margin: 0px;
   padding: 0px;
-  height: 100px;
+  height: 50px;
   width: 100%;
+  background: rgba(100, 100, 100, .5);
 }
