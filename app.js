@@ -1,7 +1,9 @@
 var app = require('express')()
 , server = require('http').createServer(app)
 , io = require('socket.io').listen(server);
+
 var count = 0;
+var users = [];
 
 if(process.argv[2]!="test"){
 	server.listen(3001);
@@ -19,14 +21,25 @@ if(process.argv[2]!="test"){
 		res.sendfile(__dirname + '/ajax-loader.gif');
 	});
 	io.sockets.on('connection', function (socket) {
-		var time=Date.now();
+		var time=0;
 		socket.emit('news23', { num: count , next: time});
 		socket.on('clicked3', function (data) {
-			count++;
-			time=data.t;
-			time+=1000;
-			socket.emit('news23', { num: count , next: time});
-			socket.broadcast.emit('news3', { num: count });
+			var address = socket.handshake.address;
+			if(users.indexOf(address) > -1){
+				console.log('ARRR! SPAMMER AHOY!');
+			}else{
+				count++;
+				time=data.t;
+				time+=1000;
+				socket.emit('news23', { num: count , next: time});
+				socket.broadcast.emit('news3', { num: count });
+				users.push(address);
+				console.log('adding '+address);
+				setTimeout(function(){
+					users.splice(users.indexOf(address),1);
+					console.log('removing '+address);
+				},900);
+			}
 		});
 	});
 }else{
