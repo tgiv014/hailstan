@@ -21,6 +21,7 @@
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script>
 		$(window).load(function(){
+			var socket = io.connect('http://hailstan.com');
 			jQuery.fn.center = function () {
 				this.css("position", "absolute");
 				this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
@@ -34,13 +35,12 @@
 			setTimeout(function() {
 				$('span').text('... Damn it.')
 			}, 10000);
-			socket.on('connect', function () {
+			var time = 0;
+			socket.on('connect',function(){
 				$('#cover').fadeOut(400,function(){
 					$('#cover').remove();
 				});
 			});
-			var time = 0;
-			var socket = io.connect('http://hailstan.com');
 			socket.on('news', function (data) {
 				$('span').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
