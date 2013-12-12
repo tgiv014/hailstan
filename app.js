@@ -9,6 +9,9 @@ if(process.argv[2]!="test"){
 	app.get('/', function (req, res) {
 		res.sendfile(__dirname + '/index.html');
 	});
+	app.get('/styles.css', function (req, res) {
+		res.sendfile(__dirname + '/styles.css');
+	});
 
 	io.sockets.on('connection', function (socket) {
 		socket.emit('news', { num: count });
