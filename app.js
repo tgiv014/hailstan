@@ -11,19 +11,22 @@ if(process.argv[2]!="test"){
 	app.get('/', function (req, res) {
 		var address = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 		if(address=="192.168.1.125"){
-			res.sendfile(__dirname + '/index2.html');
+			res.sendfile(__dirname + '/assets/index2.html');
 		}else{
-			res.sendfile(__dirname + '/index.html');
+			res.sendfile(__dirname + '/assets/index.html');
 		}
 	});
 	app.get('/styles.css', function (req, res) {
-		res.sendfile(__dirname + '/styles.css');
+		res.sendfile(__dirname + '/assets/styles.css');
 	});
 	app.get('/stan.jpg', function (req, res) {
-		res.sendfile(__dirname + '/stan.jpg');
+		res.sendfile(__dirname + '/assets/stan.jpg');
 	});
 	app.get('/load.gif', function (req, res) {
-		res.sendfile(__dirname + '/ajax-loader.gif');
+		res.sendfile(__dirname + '/assets/ajax-loader.gif');
+	});
+	app.get('/stan.js', function (req, res) {
+		res.sendfile(__dirname + '/assets/stan.js');
 	});
 	io.sockets.on('connection', function (socket) {
 		var time=0;
