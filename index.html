@@ -3,6 +3,14 @@
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
+	<div id="cover">
+		<div id="loader">
+     		<h1>Hold up</h1>
+    		<img id="spinner" src="/load.gif">
+    		<h3>Connecting<span>...</span></h3>
+
+		</div>
+	</div>
 	<center>
 		<img src="/stan.jpg" alt="Stan" />
 		<br />
@@ -14,6 +22,24 @@
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script>
 		$(window).load(function(){
+			jQuery.fn.center = function () {
+				this.css("position", "absolute");
+				this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
+				this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+				return this;
+			}
+			$('#loader').center();
+			$(window).resize(function () {
+				$('#loader').center();
+			});
+			setTimeout(function() {
+				$('span').text('... Damn it.')
+			}, 10000);
+			socket.on('connect', function () {
+				$('#cover').fadeOut(400,function(){
+					$('#cover').remove();
+				});
+			});
 			var time = 0;
 			var socket = io.connect('http://hailstan.com');
 			socket.on('news', function (data) {
@@ -31,7 +57,8 @@
 					socket.emit('clicked', { t: currtime});
 				}
 			});
+
 		});
-	</script>
+</script>
 </body>
 <html>
