@@ -53,6 +53,7 @@
 			});
 			$('button').on('click', function() {
 				currtime= Date.now();
+				console.log(currtime-time);
 				if(currtime-time>0){
 					socket.emit('clicked3', { t: currtime});
 				}else{
