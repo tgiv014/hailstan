@@ -9,7 +9,7 @@ if(process.argv[2]!="test"){
 	server.listen(3001);
 
 	app.get('/', function (req, res) {
-		var address = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
+		var address = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 		if(address=="192.168.1.125"){
 			res.sendfile(__dirname + '/index2.html');
 		}else{
