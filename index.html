@@ -5,7 +5,7 @@
   var socket = io.connect('http://hailstan.com');
   socket.on('news', function (data) {
     console.log(data);
-    $('.data').text(data.hello);
+    $('#data').text(data.hello);
     socket.emit('my other event', { my: 'data' });
   });
 </script>
