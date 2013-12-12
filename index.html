@@ -22,7 +22,6 @@
 	<script>
 		$(window).load(function(){
 			var socket = io.connect('http://hailstan.com');
-			var time = 0;
 			jQuery.fn.center = function () {
 				this.css("position", "absolute");
 				this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
@@ -42,19 +41,19 @@
 					$('#cover').remove();
 				});
 			});
-			socket.on('news2', function (data) {
+			socket.on('news3', function (data) {
 				$('span').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 			});
-			socket.on('news22', function (data) {
+			socket.on('news23', function (data) {
 				$('span').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
-				time=data.next;
+				var time=data.next;
 			});
 			$('button').on('click', function() {
 				currtime= Date.now();
-				if(currtime-time){
-					socket.emit('clicked2', { t: currtime});
+				if(currtime-time>0){
+					socket.emit('clicked3', { t: currtime});
 				}
 			});
 
