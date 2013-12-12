@@ -42,12 +42,12 @@
 					$('#cover').remove();
 				});
 			});
-			socket.on('news3', function (data) {
+			socket.on('news', function (data) {
 				$('#stans').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 			});
-			socket.on('news23', function (data) {
-				$('span').text(data.num);
+			socket.on('news2', function (data) {
+				$('#stans').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 				time=data.next;
 				console.log(time);
@@ -58,7 +58,7 @@
 				console.log(currtime);
 				console.log(currtime-time);
 				if(currtime-time>0){
-					socket.emit('clicked3', { t: currtime});
+					socket.emit('clicked', { t: currtime});
 				}else{
 					console.log('no');
 				}

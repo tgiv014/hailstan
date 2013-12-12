@@ -22,8 +22,8 @@ if(process.argv[2]!="test"){
 	});
 	io.sockets.on('connection', function (socket) {
 		var time=0;
-		socket.emit('news23', { num: count , next: time});
-		socket.on('clicked3', function (data) {
+		socket.emit('news2', { num: count , next: time});
+		socket.on('clicked', function (data) {
 			var address = socket.handshake.address;
 			if(users.indexOf(address) > -1){
 				console.log('ARRR! SPAMMER AHOY!');
@@ -31,13 +31,12 @@ if(process.argv[2]!="test"){
 				count++;
 				time=data.t;
 				time+=1000;
-				socket.emit('news23', { num: count , next: time});
-				socket.broadcast.emit('news3', { num: count });
+				socket.emit('news2', { num: count , next: time});
+				socket.broadcast.emit('news', { num: count });
 				users.push(address);
-				console.log('adding '+address);
+				console.log(address);
 				setTimeout(function(){
 					users.splice(users.indexOf(address),1);
-					console.log('removing '+address);
 				},900);
 			}
 		});
