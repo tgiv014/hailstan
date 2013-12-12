@@ -15,14 +15,22 @@
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script>
 		$(window).load(function(){
+			var time = 0;
 			var socket = io.connect('http://hailstan.com');
 			socket.on('news', function (data) {
-				console.log(data);
 				$('span').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 			});
+			socket.on('news2', function (data) {
+				$('span').text(data.num);
+				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
+				time=data.time;
+			});
 			$('button').on('click', function() {
-				socket.emit('clicked', { my: 'data' });
+				currtime= new Date().getTime();
+				if(currtime-time>1000){
+					socket.emit('clicked', { my: 'data' });
+				}
 			});
 		});
 	</script>

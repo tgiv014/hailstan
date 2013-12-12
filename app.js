@@ -17,10 +17,14 @@ if(process.argv[2]!="test"){
 	});
 
 	io.sockets.on('connection', function (socket) {
-		socket.emit('news', { num: count });
+		time=new Date().getTime();
+		socket.emit('news2', { num: count , next: time});
 		socket.on('clicked', function (data) {
 			count++;
-			io.sockets.emit('news', { num: count });
+			time=new Date().getTime();
+			time+=1000;
+			socket.emit('news2', { num: count , next: time});
+			socket.broadcast.emit('news', { num: count });
 		});
 	});
 }else{
