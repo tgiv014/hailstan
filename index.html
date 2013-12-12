@@ -1,26 +1,28 @@
 <head>
-<link rel="stylesheet" type="text/css" href="/styles.css">
-<script src="/socket.io/socket.io.js"></script>
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//rawgithub.com/imsky/holder/master/holder.js"></script>
-<script>
-  var socket = io.connect('http://hailstan.com');
-  socket.on('news', function (data) {
-    console.log(data);
-    $('span').text(data.num);
-  });
-  $('button').on('click', function() {
-    socket.emit('clicked', { my: 'data' });
-  	console.log('Sent event to server');
-    $(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
-  });
-</script>
+	<link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
 	<center>
-    	<img data-src="holder.js/300x300/text:Stan the man" alt="Stan" />
-    	<br />
-    	<button>Hail Stan</button>
-    	<p><span>I don't know how many</span> people have hailed Stan</p>
+		<img data-src="holder.js/300x300/text:Stan the man" alt="Stan" />
+		<br />
+		<button>Hail Stan</button>
+		<p><span>I don't know how many</span> people have hailed Stan</p>
 	</center>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="//rawgithub.com/imsky/holder/master/holder.js"></script>
+	<script>
+		$(window).load(function(){
+			var socket = io.connect('http://hailstan.com');
+			socket.on('news', function (data) {
+				console.log(data);
+				$('span').text(data.num);
+			});
+			$('button').on('click', function() {
+				socket.emit('clicked', { my: 'data' });
+				console.log('Sent event to server');
+				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
+			});
+		});
+	</script>
 </body>
