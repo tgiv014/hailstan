@@ -9,11 +9,14 @@ if(process.argv[2]!="test"){
 	server.listen(3001);
 
 	app.get('/', function (req, res) {
+		res.sendfile(__dirname + '/assets/index.html');
+	});
+	app.get('/dev', function (req, res) {
 		var address = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 		if(address=="192.168.1.125"){
 			res.sendfile(__dirname + '/assets/index2.html');
 		}else{
-			res.sendfile(__dirname + '/assets/index.html');
+			res.send("You probably shouldn't be here.");
 		}
 	});
 	app.get('/styles.css', function (req, res) {
