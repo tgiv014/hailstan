@@ -25,9 +25,11 @@
 				$('span').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 				time=data.time;
+				console.log(time);
 			});
 			$('button').on('click', function() {
 				currtime= new Date().getTime();
+				console.log(currtime-time);
 				if(currtime-time>1000){
 					socket.emit('clicked', { my: 'data' });
 				}
