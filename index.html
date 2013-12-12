@@ -9,6 +9,7 @@
   });
   $('#data').click(function(){
   	socket.emit('clicked', { my: 'data' });
+  	console.log('Sent event to server');
   });
 </script>
 </head>
