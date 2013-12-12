@@ -17,11 +17,11 @@ if(process.argv[2]!="test"){
 	});
 
 	io.sockets.on('connection', function (socket) {
-		time=new Date().getTime();
+		time= Date.now();
 		socket.emit('news2', { num: count , next: time});
 		socket.on('clicked', function (data) {
 			count++;
-			time=new Date().getTime();
+			time= Date.now()
 			time+=1000;
 			socket.emit('news2', { num: count , next: time});
 			socket.broadcast.emit('news', { num: count });
