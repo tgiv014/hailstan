@@ -22,7 +22,7 @@ if(process.argv[2]!="test"){
 		socket.on('clicked', function (data) {
 			count++;
 			time=data.t;
-			time+=1000;
+			time+=500;
 			socket.emit('news2', { num: count , next: time});
 			socket.broadcast.emit('news', { num: count });
 		});

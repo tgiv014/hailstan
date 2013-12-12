@@ -27,7 +27,7 @@
 			});
 			$('button').on('click', function() {
 				currtime= Date.now();
-				if(currtime-time>1000){
+				if(currtime-time){
 					socket.emit('clicked', { t: currtime});
 				}
 			});
