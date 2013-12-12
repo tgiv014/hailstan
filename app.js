@@ -18,13 +18,12 @@ if(process.argv[2]!="test"){
 	app.get('/load.gif', function (req, res) {
 		res.sendfile(__dirname + '/ajax-loader.gif');
 	});
-
+	var time=0;
 	io.sockets.on('connection', function (socket) {
-		var time=0;
 		socket.emit('news23', { num: count , next: time});
 		socket.on('clicked3', function (data) {
 			count++;
-			var time=data.t;
+			time=data.t;
 			time+=1000;
 			socket.emit('news23', { num: count , next: time});
 			socket.broadcast.emit('news3', { num: count });
