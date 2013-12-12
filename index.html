@@ -3,14 +3,13 @@
 </head>
 <body>
 	<center>
-		<img src="/stan.jpg" data-src="holder.js/300x300/text:Stan the man" alt="Stan" />
+		<img src="/stan.jpg" alt="Stan" />
 		<br />
 		<button>Hail Stan</button>
 		<p>Stan has been hailed <span>HOLD ON I'M TRYING TO FIGURE THIS OUT</span> times!</p>
 	</center>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="//rawgithub.com/imsky/holder/master/holder.js"></script>
 	<script>
 		$(window).load(function(){
 			var socket = io.connect('http://hailstan.com');
