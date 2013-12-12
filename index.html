@@ -24,7 +24,7 @@
 			socket.on('news2', function (data) {
 				$('span').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
-				time=data.time;
+				time=data.next;
 				console.log(time);
 			});
 			$('button').on('click', function() {
