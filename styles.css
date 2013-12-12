@@ -48,6 +48,8 @@ p {
 }
 #tag{
   position: absolute;
+  width: 250px;
+  height: 40px;
   margin: 0px;
   padding: 0px;
   bottom: 0px;
