@@ -1,7 +1,7 @@
 var app = require('express')()
 , server = require('http').createServer(app)
 , io = require('socket.io').listen(server);
-
+var count = 0;
 if(process.argv[2]!="test"){
 	server.listen(3001);
 
@@ -10,7 +10,8 @@ if(process.argv[2]!="test"){
 	});
 
 	io.sockets.on('connection', function (socket) {
-		socket.emit('news', { hello: 'world' });
+		count++;
+		socket.emit('news', { hello: count });
 		socket.on('my other event', function (data) {
 			console.log(data);
 		});
