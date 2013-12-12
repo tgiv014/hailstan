@@ -12,6 +12,10 @@ if(process.argv[2]!="test"){
 	app.get('/styles.css', function (req, res) {
 		res.sendfile(__dirname + '/styles.css');
 	});
+	app.get('/stan.jpg', function (req, res) {
+		res.sendfile(__dirname + '/stan.jpg');
+	});
+
 
 	io.sockets.on('connection', function (socket) {
 		socket.emit('news', { num: count });

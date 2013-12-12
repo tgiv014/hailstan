@@ -3,10 +3,10 @@
 </head>
 <body>
 	<center>
-		<img data-src="holder.js/300x300/text:Stan the man" alt="Stan" />
+		<img src="/stan.jpg" data-src="holder.js/300x300/text:Stan the man" alt="Stan" />
 		<br />
 		<button>Hail Stan</button>
-		<p>Stan has been hailed <span>YO HOLD ON I'M TRYING TO FIGURE THIS OUT</span> times!</p>
+		<p>Stan has been hailed <span>HOLD ON I'M TRYING TO FIGURE THIS OUT</span> times!</p>
 	</center>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -20,7 +20,6 @@
 			});
 			$('button').on('click', function() {
 				socket.emit('clicked', { my: 'data' });
-				console.log('Sent event to server');
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 			});
 		});
