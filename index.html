@@ -7,12 +7,12 @@
     console.log(data);
     $('#data').text(data.num);
   });
-  $('#data').click(function(){
+  $('#container').click(function(){
   	socket.emit('clicked', { my: 'data' });
   	console.log('Sent event to server');
   });
 </script>
 </head>
 <body>
-	<strong id="data">Waiting for data...</strong>
+	<div id="container"><strong id="data">Waiting for data...</strong></div>
 </body>
