@@ -16,10 +16,10 @@
 			socket.on('news', function (data) {
 				console.log(data);
 				$('span').text(data.num);
+				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 			});
 			$('button').on('click', function() {
 				socket.emit('clicked', { my: 'data' });
-				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 			});
 		});
 	</script>

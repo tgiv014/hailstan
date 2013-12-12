@@ -16,12 +16,9 @@ if(process.argv[2]!="test"){
 		res.sendfile(__dirname + '/stan.jpg');
 	});
 
-
 	io.sockets.on('connection', function (socket) {
 		socket.emit('news', { num: count });
 		socket.on('clicked', function (data) {
-			console.log(data);
-			console.log(data.my);
 			count++;
 			io.sockets.emit('news', { num: count });
 		});

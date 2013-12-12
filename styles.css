@@ -28,7 +28,10 @@ button:active {
 button:hover {
   background: #70a300;
 }
-
 img {
   border-radius: 18px;
+}
+p {
+    color: #ffffff;
+    text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
 }
