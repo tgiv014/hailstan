@@ -1,8 +1,15 @@
+<head>
 <script src="/socket.io/socket.io.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
   var socket = io.connect('http://hailstan.com');
   socket.on('news', function (data) {
     console.log(data);
+    $('.data').text(data.hello);
     socket.emit('my other event', { my: 'data' });
   });
 </script>
+</head>
+<body>
+	<strong id="data">Waiting for data...</strong>
+</body>
