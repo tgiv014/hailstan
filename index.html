@@ -35,25 +35,26 @@
 			});
 			setTimeout(function() {
 				$('span').text('... Damn it.')
+				$('#loader').center();
 			}, 10000);
 			socket.on('connect',function(){
 				$('#cover').fadeOut(400,function(){
 					$('#cover').remove();
 				});
 			});
-			socket.on('news', function (data) {
+			socket.on('news1', function (data) {
 				$('span').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 			});
-			socket.on('news2', function (data) {
+			socket.on('news21', function (data) {
 				$('span').text(data.num);
 				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
 				time=data.next;
 			});
-			$('button').on('click', function() {
+			$('button').on('click1', function() {
 				currtime= Date.now();
 				if(currtime-time){
-					socket.emit('clicked', { t: currtime});
+					socket.emit('clicked1', { t: currtime});
 				}
 			});
 

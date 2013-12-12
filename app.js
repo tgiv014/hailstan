@@ -21,13 +21,13 @@ if(process.argv[2]!="test"){
 
 	io.sockets.on('connection', function (socket) {
 		time=0;
-		socket.emit('news2', { num: count , next: time});
-		socket.on('clicked', function (data) {
+		socket.emit('news21', { num: count , next: time});
+		socket.on('clicked1', function (data) {
 			count++;
 			time=data.t;
 			time+=500;
-			socket.emit('news2', { num: count , next: time});
-			socket.broadcast.emit('news', { num: count });
+			socket.emit('news21', { num: count , next: time});
+			socket.broadcast.emit('news1', { num: count });
 		});
 	});
 }else{
