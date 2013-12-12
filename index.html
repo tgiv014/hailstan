@@ -5,8 +5,10 @@
   var socket = io.connect('http://hailstan.com');
   socket.on('news', function (data) {
     console.log(data);
-    $('#data').text(data.hello);
-    socket.emit('my other event', { my: 'data' });
+    $('#data').text(data.num);
+  });
+  $('#data').click(function(){
+  	socket.emit('clicked', { my: 'data' });
   });
 </script>
 </head>
