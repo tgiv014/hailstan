@@ -55,6 +55,8 @@
 				currtime= Date.now();
 				if(currtime-time>0){
 					socket.emit('clicked3', { t: currtime});
+				}else{
+					console.log('no');
 				}
 			});
 

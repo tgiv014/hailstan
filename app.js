@@ -25,7 +25,7 @@ if(process.argv[2]!="test"){
 		socket.on('clicked3', function (data) {
 			count++;
 			time=data.t;
-			time+=500;
+			time+=1000;
 			socket.emit('news23', { num: count , next: time});
 			socket.broadcast.emit('news3', { num: count });
 		});
