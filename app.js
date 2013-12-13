@@ -19,18 +19,7 @@ if(process.argv[2]!="test"){
 			res.send("You probably shouldn't be here.");
 		}
 	});
-	app.get('/styles.css', function (req, res) {
-		res.sendfile(__dirname + '/assets/styles.css');
-	});
-	app.get('/stan.jpg', function (req, res) {
-		res.sendfile(__dirname + '/assets/stan.jpg');
-	});
-	app.get('/load.gif', function (req, res) {
-		res.sendfile(__dirname + '/assets/ajax-loader.gif');
-	});
-	app.get('/stan.js', function (req, res) {
-		res.sendfile(__dirname + '/assets/stan.js');
-	});
+	app.use(express.static('assets'));
 	io.sockets.on('connection', function (socket) {
 		var time=0;
 		socket.emit('news2', { num: count , next: time});
