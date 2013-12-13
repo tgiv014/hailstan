@@ -37,7 +37,7 @@ if(process.argv[2]!="test"){
 		socket.on('clicked', function (data) {
 			var address = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
 			if(users.indexOf(address) > -1){
-				console.log('ARRR! SPAMMER AHOY!');
+				console.log('ARRR! SPAMMER AHOY! - '+address);
 			}else{
 				count++;
 				time=data.t;
