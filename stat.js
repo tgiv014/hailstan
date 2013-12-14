@@ -47,11 +47,15 @@ var processHits = function(){
 }
 
 var page = function(req, res){
-	var content='';
-	tophits.forEach(function(entry,index){
-		content+='Clicks: '+entry+' User: '+topaddresses[index]+'<br>';
+	res.send(buildchart());
+}
+
+var buildchart = function(){
+	var chart = [];
+	tophits.foreach(function(entry){
+		chart.push({ value: entry , color: '#'+Math.floor(Math.random()*16777215).toString(16)});
 	});
-	res.send(content);
+	return chart;
 }
 
 module.exports.recordClick = recordClick;
