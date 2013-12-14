@@ -39,9 +39,15 @@
 				$('#loader').center();
 			}, 10000);
 			socket.on('connect',function(){
+				$('#cover').fadeOut(400,function(){
+					$('#cover').remove();
+				});
 				socket.emit('getdata', { hey: 'yo'});
+				console.log('Sent request');
 			});
 			socket.on('data', function (data) {
+				console.log('Received Response!');
+				console.log(data);
 				pie.Pie(data);
 			});
 		});
