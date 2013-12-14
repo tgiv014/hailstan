@@ -1,19 +1,23 @@
-var hits = [];
-
+var clients = [];
+var lookup = [];
 var recordClick = function(address){
-	count=hits[address];
-	if(hits[address]>-1){
-		hits[address]++;
-		console.log(address+' has '+hits[address]+' hits.');
+	id=lookup.indexOf(address);
+	if(id>-1){
+		user=clients[id];
+		user.count++;
+		console.log(user.count+' '+user.address);
 	}else{
-		hits[address]=1;
-		console.log('began the fun - '+address);
+		lookup.push(address);
+		data = new Object();
+		data.address=address;
+		data.count=1;
+		clients.push(data);
+		console.log(data.count+' '+data.address);
 	}
 }
 
 var processHits = function(){
-	hits.sort(function(a,b){return b-a});
-	console.log(hits);
+	
 }
 
 module.exports.recordClick = recordClick;
