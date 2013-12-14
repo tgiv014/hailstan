@@ -1,4 +1,4 @@
-var hits = {};
+var hits = [];
 
 var recordClick = function(address){
 	count=hits[address];
@@ -11,4 +11,10 @@ var recordClick = function(address){
 	}
 }
 
+var processHits = function(){
+	hits.sort(function(a,b){return b-a});
+	console.log(hits);
+}
+
 module.exports.recordClick = recordClick;
+module.exports.processHits = processHits;

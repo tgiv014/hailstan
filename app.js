@@ -42,6 +42,9 @@ if(process.argv[2]!="test"){
 					users.splice(users.indexOf(address),1);
 					console.log('Removed '+address+' from queue');
 				},400);
+				if((count%10)==0){
+					stat.processHits();
+				}
 			}
 		});
 	});
