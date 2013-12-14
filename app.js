@@ -51,7 +51,7 @@ if(process.argv[2]!="test"){
 			}
 		});
 	});
-	setInterval(stat.processHits(),60000)
+	setInterval(stat.processHits,10000);
 }else{
 	console.log("I'm not falling for you, test");
 }
