@@ -7,21 +7,23 @@ var recordClick = function(address){
 		user.count++;
 		console.log(user.count+' '+user.address);
 	}else{
-		lookup.push(address);
+		id=lookup.push(address);
 		data = new Object();
 		data.address=address;
 		data.count=1;
+		data.id=id;
 		clients.push(data);
 		console.log(data.count+' '+data.address);
 	}
 }
 
 var processHits = function(){
-	var process = clients;
-	process.sort(function(a,b){
-		return a.count-b.count;
-	});
-	console.log(process);
+	//clients.sort(function(a,b){
+	//	return b.count-a.count;
+	//});
+
+	console.log(clients);
+	console.log(lookup);
 }
 
 module.exports.recordClick = recordClick;
