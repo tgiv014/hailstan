@@ -15,7 +15,7 @@
     <canvas></canvas>
 	</div>
 	<span class="status">
-        <p>stan</p>
+        stan
     </span>
 	<a href="http://nodejs.org/"><img id="logo" src="http://nodejs.org/images/logos/nodejs-black.png"></a>
 	<script src="/socket.io/socket.io.js"></script>
@@ -81,6 +81,11 @@ socket.on('data', function (data) {
 		console.log('No change');
 	}
 });
+socket.on('news', function (data) {
+				$('.status').text(data.num);
+				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
+				$('.status').width($('.canvas-container').width()/3).bigtext().center();
+			});
 });
 </script>
 </body>
