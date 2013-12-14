@@ -1,5 +1,5 @@
 var express = require('express');
-var stat = require('stat');
+var stat = require('./stat');
 var app = express()
 , server = require('http').createServer(app)
 , io = require('socket.io').listen(server, { log: false });
