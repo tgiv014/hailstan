@@ -12,15 +12,17 @@ if(process.argv[2]!="test"){
 	var clients1;
 	var total1;
 	app.get('/', function (req, res) {
-		res.sendfile(__dirname + '/assets/index.html');
+		res.sendfile(__dirname + '/index.html');
 	});
 
-	app.get('/stats', stat.page);
+	app.get('/stats', function (req, res) {
+		res.sendfile(__dirname + '/stats.html');
+	});
 
 	app.get('/dev', function (req, res) {
 		var address = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 		if(address=="192.168.1.125"){
-			res.sendfile(__dirname + '/assets/index2.html');
+			res.sendfile(__dirname + '/index2.html');
 		}else{
 			res.send("You probably shouldn't be here.");
 		}
@@ -49,6 +51,9 @@ if(process.argv[2]!="test"){
 					console.log('Removed '+address+' from queue');
 				},400);
 			}
+		});
+		socket.on('getdata', function (data) {
+				socket.emit('data', stat.buildchart());
 		});
 	});
 	setInterval(stat.processHits,10000);

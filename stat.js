@@ -46,10 +46,6 @@ var processHits = function(){
 	console.log(lookup);
 }
 
-var page = function(req, res){
-	res.send(buildchart());
-}
-
 var buildchart = function(){
 	var chart = [];
 	tophits.forEach(function(entry){
@@ -60,4 +56,4 @@ var buildchart = function(){
 
 module.exports.recordClick = recordClick;
 module.exports.processHits = processHits;
-module.exports.page = page;
+module.exports.buildchart = buildchart;
