@@ -59,8 +59,7 @@ if(process.argv[2]!="test"){
 			io.sockets.emit('data', stat.buildchart());
 		},20000);
 	});
-})
-setInterval(stat.processHits,10000);
+	setInterval(stat.processHits,10000);
 }else{
 	console.log("I'm not falling for you, test");
 }
