@@ -60,7 +60,7 @@ var stringToColour = function(str) {
 var buildchart = function(){
 	var chart = [];
 	tophits.forEach(function(entry,index){
-		chart.push({ value: entry , color: stringToColour(topaddresses[index]));
+		chart.push({ value: entry , color: stringToColour(topaddresses[index])});
 	});
 	return chart;
 }
