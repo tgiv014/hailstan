@@ -46,10 +46,21 @@ var processHits = function(){
 	console.log(lookup);
 }
 
+var stringToColour = function(str) {
+
+    // str to hash
+    for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
+
+    // int/hash to hex
+    for (var i = 0, colour = "#"; i < 3; colour += ("00" + ((hash >> i++ * 8) & 0xFF).toString(16)).slice(-2));
+
+    return colour;
+}
+
 var buildchart = function(){
 	var chart = [];
-	tophits.forEach(function(entry){
-		chart.push({ value: entry , color: '#'+Math.floor(Math.random()*16777215).toString(16)});
+	tophits.forEach(function(entry,index){
+		chart.push({ value: entry , color: stringToColour(topaddresses[index]));
 	});
 	return chart;
 }
