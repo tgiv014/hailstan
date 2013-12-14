@@ -47,7 +47,7 @@ var processHits = function(){
 }
 
 var page = function(req, res){
-	var content;
+	var content='';
 	tophits.forEach(function(entry,index){
 		content+='Clicks: '+entry+' User: '+topaddresses[index]+'<br>';
 	});
