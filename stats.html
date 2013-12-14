@@ -1,5 +1,6 @@
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,700">
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
@@ -11,13 +12,17 @@
 		</div>
 	</div>
 	<div class="canvas-container">
-        <canvas id="myChart"></canvas>
-        <span class="status"></span>
-    </div>
+    <canvas></canvas>
+	</div>
+	<span class="status">
+        <p>stan</p>
+    </span>
 	<a href="http://nodejs.org/"><img id="logo" src="http://nodejs.org/images/logos/nodejs-black.png"></a>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="//rawgithub.com/nnnick/Chart.js/master/Chart.min.js"></script>
+	<script src="http://rawgithub.com/zachleat/BigText/master/bigtext.js"></script>
+
 	<script>
 		$(window).load(function(){
 			var socket = io.connect('http://hailstan.com');
@@ -27,12 +32,20 @@
 				this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
 				return this;
 			}
+			function fitToContainer(canvas) {
+			    canvas.style.width = '100%';
+			    canvas.style.height = '100%';
+			    canvas.width = canvas.offsetWidth;
+			    canvas.height = canvas.offsetHeight;
+			}
 			var pieData = [];
-			//Get context with jQuery - using jQuery's .get() method.
-			var ctx = $("#myChart").get(0).getContext("2d");
-			//This will get the first returned node in the jQuery collection.
+			var cw = $('.canvas-container').width();
+			$('.canvas-container').css({'height': cw + 'px'}).center();
+			$('.status').width($('.canvas-container').width()/3).bigtext().center();
+			var canvas = document.querySelector('canvas'),
+			    ctx = canvas.getContext('2d');
+			fitToContainer(canvas);
 			var pie = new Chart(ctx);
-
 			$('#loader').center();
 			$(window).resize(function () {
 				$('#loader').center();
@@ -47,27 +60,16 @@
 				});
 				socket.emit('getdata', { hey: 'yo'});
 				console.log('Sent request');
-			});
-			drawcenter = function() {
-				ctx.font = 'italic 40pt Calibri';
-				ctx.fillText('Hello World!', 150, 100);
-				console.log('drawing center');
-			}
-			changeoptions = function () {
-				options = {
-        //Boolean - Whether we should animate the chart	
-        animation: false,
-        //Function - Will fire on animation completion.
-        onAnimationComplete: drawcenter
-    }
-    drawcenter();
     console.log('disabled animation');
 }
 options = {
     //Boolean - Whether we should animate the chart	
     animation: true,
     //Function - Will fire on animation completion.
-    onAnimationComplete: changeoptions
+    onAnimationComplete: function () {
+        options.animation = false;
+        console.log('disabled animation');
+    }
 }
 socket.on('data', function (data) {
 	console.log('Received Response!');
