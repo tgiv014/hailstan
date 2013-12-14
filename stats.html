@@ -5,9 +5,9 @@
 <body>
 	<div id="cover">
 		<div id="loader">
-     		<h1>Hold up</h1>
-    		<img id="spinner" src="/load.gif">
-    		<h3>Connecting<span id="extra">...</span></h3>
+			<h1>Hold up</h1>
+			<img id="spinner" src="/load.gif">
+			<h3>Connecting<span id="extra">...</span></h3>
 		</div>
 	</div>
 	<canvas id="myChart" width="400" height="400"></canvas>
@@ -45,17 +45,32 @@
 				socket.emit('getdata', { hey: 'yo'});
 				console.log('Sent request');
 			});
-			socket.on('data', function (data) {
-				console.log('Received Response!');
-				console.log(data);
-				if(data!=pieData){
-					pie.Pie(data);
-					pieData=data;
-				}else{
-					console.log('No change');
-				}
-			});
-		});
+			changeoptions = function () {
+				options = {
+        //Boolean - Whether we should animate the chart	
+        animation: false,
+        //Function - Will fire on animation completion.
+        onAnimationComplete: null
+    }
+    console.log('disabled animation');
+}
+options = {
+    //Boolean - Whether we should animate the chart	
+    animation: true,
+    //Function - Will fire on animation completion.
+    onAnimationComplete: changeoptions
+}
+socket.on('data', function (data) {
+	console.log('Received Response!');
+	console.log(data);
+	if(data!=pieData){
+		pie.Doughnut(data,options);
+		pieData=data;
+	}else{
+		console.log('No change');
+	}
+});
+});
 </script>
 </body>
 <html>
