@@ -50,11 +50,10 @@
 			$(window).resize(function () {
 				$('#loader').center();
 				var cw = $('.canvas-container').width();
-			$('.canvas-container').css({'height': cw + 'px'}).center();
-			$('.status').width($('.canvas-container').width()/3).bigtext().center();
-			var canvas = document.querySelector('canvas'),
-			    ctx = canvas.getContext('2d');
-			fitToContainer(canvas);
+				$('.canvas-container').css({'height': cw + 'px'}).center();
+				$('.status').width($('.canvas-container').width()/3).bigtext().center();
+				fitToContainer(canvas);
+				pie.Doughnut(pieData,options);
 			});
 			setTimeout(function() {
 				$('#extra').text('... Damn it.')
@@ -80,12 +79,8 @@ options = {
 socket.on('data', function (data) {
 	console.log('Received Response!');
 	console.log(data);
-	if(data!=pieData){
-		pie.Doughnut(data,options);
-		pieData=data;
-	}else{
-		console.log('No change');
-	}
+	pie.Doughnut(data,options);
+	pieData=data;
 });
 socket.on('news', function (data) {
 				$('.status').text(data.num);
