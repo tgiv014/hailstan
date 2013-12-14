@@ -7,7 +7,7 @@ var recordClick = function(address){
 		user.count++;
 		console.log(user.count+' '+user.address);
 	}else{
-		id=lookup.push(address);
+		id=lookup.push(address)-1;
 		data = new Object();
 		data.address=address;
 		data.count=1;
@@ -18,9 +18,13 @@ var recordClick = function(address){
 }
 
 var processHits = function(){
-	//clients.sort(function(a,b){
-	//	return b.count-a.count;
-	//});
+	clients.sort(function(a,b){
+		return b.count-a.count;
+	});
+	
+	clients.forEach(function(entry,index){
+		lookup[index]=entry.address;
+	});
 
 	console.log(clients);
 	console.log(lookup);
