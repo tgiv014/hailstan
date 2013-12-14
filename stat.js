@@ -17,7 +17,11 @@ var recordClick = function(address){
 }
 
 var processHits = function(){
-	
+	var process = clients;
+	process.sort(function(a,b){
+		return a.count-b.count;
+	});
+	console.log(process);
 }
 
 module.exports.recordClick = recordClick;
