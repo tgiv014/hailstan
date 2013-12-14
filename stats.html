@@ -24,7 +24,7 @@
 				this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
 				return this;
 			}
-
+			var pieData = [];
 			//Get context with jQuery - using jQuery's .get() method.
 			var ctx = $("#myChart").get(0).getContext("2d");
 			//This will get the first returned node in the jQuery collection.
@@ -48,7 +48,12 @@
 			socket.on('data', function (data) {
 				console.log('Received Response!');
 				console.log(data);
-				pie.Pie(data);
+				if(data!=pieData){
+					pie.Pie(data);
+					pieData=data;
+				}else{
+					console.log('No change');
+				}
 			});
 		});
 </script>
