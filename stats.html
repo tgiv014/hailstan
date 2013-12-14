@@ -45,13 +45,17 @@
 				socket.emit('getdata', { hey: 'yo'});
 				console.log('Sent request');
 			});
+			drawcenter = function() {
+				ctx.fillText('Hello World!', 150, 100);
+			}
 			changeoptions = function () {
 				options = {
         //Boolean - Whether we should animate the chart	
         animation: false,
         //Function - Will fire on animation completion.
-        onAnimationComplete: null
+        onAnimationComplete: drawcenter
     }
+    drawcenter();
     console.log('disabled animation');
 }
 options = {
