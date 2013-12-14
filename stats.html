@@ -49,6 +49,12 @@
 			$('#loader').center();
 			$(window).resize(function () {
 				$('#loader').center();
+				var cw = $('.canvas-container').width();
+			$('.canvas-container').css({'height': cw + 'px'}).center();
+			$('.status').width($('.canvas-container').width()/3).bigtext().center();
+			var canvas = document.querySelector('canvas'),
+			    ctx = canvas.getContext('2d');
+			fitToContainer(canvas);
 			});
 			setTimeout(function() {
 				$('#extra').text('... Damn it.')
@@ -83,8 +89,7 @@ socket.on('data', function (data) {
 });
 socket.on('news', function (data) {
 				$('.status').text(data.num);
-				$(':root, html, body').css('background', '#'+Math.floor(Math.random()*16777215).toString(16));
-				$('.status').width($('.canvas-container').width()/3).bigtext().center();
+				$('.status').bigtext().center();
 			});
 });
 </script>
