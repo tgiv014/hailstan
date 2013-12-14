@@ -52,7 +52,7 @@ var page = function(req, res){
 
 var buildchart = function(){
 	var chart = [];
-	tophits.foreach(function(entry){
+	tophits.forEach(function(entry){
 		chart.push({ value: entry , color: '#'+Math.floor(Math.random()*16777215).toString(16)});
 	});
 	return chart;
