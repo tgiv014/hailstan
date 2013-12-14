@@ -53,7 +53,7 @@
 				$('.canvas-container').css({'height': cw + 'px'}).center();
 				$('.status').width($('.canvas-container').width()/3).bigtext().center();
 				fitToContainer(canvas);
-				var pie = new Chart(ctx);
+				pie = new Chart(ctx);
 				pie.Doughnut(pieData,options);
 			});
 			setTimeout(function() {
