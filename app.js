@@ -1,4 +1,5 @@
 var express = require('express');
+var stat = require('stat');
 var app = express()
 , server = require('http').createServer(app)
 , io = require('socket.io').listen(server, { log: false });
@@ -30,6 +31,7 @@ if(process.argv[2]!="test"){
 				console.log('ARRR! SPAMMER AHOY! - '+address);
 			}else{
 				count++;
+				stat.recordClick(address);
 				time=data.t;
 				time+=500;
 				socket.emit('news2', { num: count , next: time});
