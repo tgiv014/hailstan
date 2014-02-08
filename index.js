@@ -35,9 +35,7 @@ if(process.argv[2]!="test"){
 		socket.emit('news2', { num: count , next: time});
 		socket.on('clicked', function (data) {
 			var address = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
-			if(users.indexOf(address) > -1){
-				console.log('ARRR! SPAMMER AHOY! - '+address);
-			}else{
+			if(users.indexOf(address) <= -1){
 				count++;
 				stat.recordClick(address);
 				time=data.t;
@@ -45,10 +43,8 @@ if(process.argv[2]!="test"){
 				socket.emit('news2', { num: count , next: time});
 				socket.broadcast.emit('news', { num: count });
 				users.push(address);
-				console.log('Legit click from '+address);
 				setTimeout(function(){
 					users.splice(users.indexOf(address),1);
-					console.log('Removed '+address+' from queue');
 				},125);
 			}
 		});

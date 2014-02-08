@@ -8,7 +8,6 @@ var recordClick = function(address){
 	if(id>-1){
 		user=clients[id];
 		user.count++;
-		console.log(user.count+' '+user.address);
 	}else{
 		id=lookup.push(address)-1;
 		data = new Object();
@@ -16,7 +15,6 @@ var recordClick = function(address){
 		data.count=1;
 		data.id=id;
 		clients.push(data);
-		console.log(data.count+' '+data.address);
 	}
 }
 
@@ -41,9 +39,6 @@ var processHits = function(){
 		}
 		total+=entry.count;
 	});
-
-	console.log(clients);
-	console.log(lookup);
 }
 
 var stringToColour = function(str) {
